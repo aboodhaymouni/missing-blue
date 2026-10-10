@@ -165,18 +165,6 @@ export function Records({ dur }: SceneProps) {
 }
 
 
-/** Slowly turning light rays, masked to a soft disc. */
-function Rays({ cx, cy, size = 1900, o = 1 }: { cx: number; cy: number; size?: number; o?: number }) {
-  const f = useCurrentFrame()
-  const mask = 'radial-gradient(circle at 50% 50%, black 0%, rgba(0,0,0,0.6) 30%, transparent 62%)'
-  return (
-    <div style={{ position: 'absolute', left: cx - size / 2, top: cy - size / 2, width: size, height: size, opacity: o, mixBlendMode: 'screen', maskImage: mask, WebkitMaskImage: mask }}>
-      <div style={{ position: 'absolute', inset: 0, transform: `rotate(${f * 0.12}deg)`, background: 'repeating-conic-gradient(from 0deg at 50% 50%, rgba(143,211,255,0.16) 0deg 3deg, transparent 3deg 11deg)' }} />
-      <div style={{ position: 'absolute', inset: 0, transform: `rotate(${-f * 0.07}deg)`, background: 'repeating-conic-gradient(from 5deg at 50% 50%, rgba(42,139,255,0.12) 0deg 2deg, transparent 2deg 17deg)' }} />
-    </div>
-  )
-}
-
 /* ================================================================== 5. reveal */
 export function LogoMark({ height, gapFlow = 1, f, glowAmt = 1, split = 0 }: { height: number; gapFlow?: number; f: number; glowAmt?: number; split?: number }) {
   const w = (577 / 973) * height
@@ -214,7 +202,6 @@ export function Reveal({ dur }: SceneProps) {
       <AbsoluteFill style={{ background: '#01040d' }} />
       <AbsoluteFill style={{ transform: `scale(${1 + fly * fly * 16})`, transformOrigin: '969px 330px', filter: `blur(${fly * 5}px)`, opacity: 1 - fly * 0.35 }}>
       <AbsoluteFill style={{ background: `radial-gradient(900px 600px at 50% 42%, rgba(42,139,255,${0.32 * s}), transparent 65%)` }} />
-      {f >= hit && <Rays cx={960} cy={335} o={Math.min(1, s) * 0.9} />}
       {f >= hit && <Dust n={90} seed="rv" opacity={0.5 * s} speed={1.4} />}
       {/* pre-hit light streak */}
       {f < hit + 4 && <div style={{ position: 'absolute', left: 958, width: 4, bottom: 0, height: 1080 * streak, background: 'linear-gradient(0deg, transparent, #8fd3ff 40%, #fff)', boxShadow: '0 0 40px 8px rgba(42,139,255,0.8)', opacity: 1 - ease(f, hit, 4) }} />}
@@ -612,7 +599,6 @@ export function Close({ dur }: SceneProps) {
     <SceneFade>
       <AbsoluteFill style={{ background: '#01040d' }} />
       <AbsoluteFill style={{ background: 'radial-gradient(900px 600px at 50% 38%, rgba(42,139,255,0.30), transparent 65%)' }} />
-      <Rays cx={960} cy={270} size={1500} o={0.55 * s} />
       <Dust n={80} seed="cl" opacity={0.4} />
       <div style={{ position: 'absolute', left: 0, right: 0, top: 120, display: 'flex', justifyContent: 'center', opacity: s, transform: `scale(${lerp(0.85, 1, s)})` }}>
         <LogoMark height={300} f={f} glowAmt={0.8} />
