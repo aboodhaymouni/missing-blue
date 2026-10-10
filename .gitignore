@@ -30,5 +30,4 @@ video/*.log
 video/public/audio/*_raw.txt
 
 # not part of the published app
-/video/
 /exports/

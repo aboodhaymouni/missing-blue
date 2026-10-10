@@ -9,7 +9,10 @@
     "build": "tsc -p tsconfig.json && tsc -p tsconfig.node.json && vite build",
     "preview": "vite preview --host --port 5181 --strictPort",
     "typecheck": "tsc -p tsconfig.json && tsc -p tsconfig.node.json",
-    "test": "node --test server/extract-core.test.ts server/biz.test.ts"
+    "test": "node --test server/extract-core.test.ts server/biz.test.ts",
+    "video:install": "npm --prefix video install",
+    "video:studio": "npm --prefix video run studio",
+    "video:render": "npm --prefix video run render"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.133.0",

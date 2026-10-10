@@ -1,0 +1,129 @@
+{
+ "fps": 30,
+ "total": 2926,
+ "vo": [
+  {
+   "id": "01",
+   "file": "audio/vo_01_p.wav",
+   "start": 132,
+   "dur": 156
+  },
+  {
+   "id": "02",
+   "file": "audio/vo_02_p.wav",
+   "start": 299,
+   "dur": 158
+  },
+  {
+   "id": "03",
+   "file": "audio/vo_03_p.wav",
+   "start": 473,
+   "dur": 134
+  },
+  {
+   "id": "04",
+   "file": "audio/vo_04_p.wav",
+   "start": 622,
+   "dur": 370
+  },
+  {
+   "id": "05",
+   "file": "audio/vo_05_p.wav",
+   "start": 1007,
+   "dur": 237
+  },
+  {
+   "id": "06",
+   "file": "audio/vo_06_p.wav",
+   "start": 1290,
+   "dur": 104
+  },
+  {
+   "id": "07",
+   "file": "audio/vo_07_p.wav",
+   "start": 1423,
+   "dur": 248
+  },
+  {
+   "id": "08",
+   "file": "audio/vo_08_p.wav",
+   "start": 1688,
+   "dur": 310
+  },
+  {
+   "id": "09",
+   "file": "audio/vo_09_p.wav",
+   "start": 2015,
+   "dur": 237
+  },
+  {
+   "id": "10",
+   "file": "audio/vo_10_p.wav",
+   "start": 2274,
+   "dur": 314
+  },
+  {
+   "id": "11",
+   "file": "audio/vo_11_p.wav",
+   "start": 2615,
+   "dur": 167
+  }
+ ],
+ "scenes": [
+  {
+   "id": "ident",
+   "start": 0,
+   "end": 90
+  },
+  {
+   "id": "desert",
+   "start": 90,
+   "end": 463
+  },
+  {
+   "id": "loss",
+   "start": 463,
+   "end": 612
+  },
+  {
+   "id": "attacks",
+   "start": 612,
+   "end": 997
+  },
+  {
+   "id": "records",
+   "start": 997,
+   "end": 1263
+  },
+  {
+   "id": "reveal",
+   "start": 1263,
+   "end": 1413
+  },
+  {
+   "id": "detect",
+   "start": 1413,
+   "end": 1678
+  },
+  {
+   "id": "verify",
+   "start": 1678,
+   "end": 2005
+  },
+  {
+   "id": "remember",
+   "start": 2005,
+   "end": 2264
+  },
+  {
+   "id": "proof",
+   "start": 2264,
+   "end": 2605
+  },
+  {
+   "id": "close",
+   "start": 2605,
+   "end": 2926
+  }
+ ]
+}

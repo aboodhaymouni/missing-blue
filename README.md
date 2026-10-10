@@ -23,7 +23,14 @@ AI Quest 2026 · Al Hussein Technical University (HTU) · Sector 02 `next.societ
 
 ## Intro video
 
-[`public/video/missing-blue-intro.mp4`](public/video/missing-blue-intro.mp4) (1:37, 1080p, English). It covers the problem, Detect · Verify · Remember, and the numbers behind them. It uses real Sentinel-2 imagery from this repository; the route is illustrative and the crew report is synthetic, as everywhere else. The narration is Gemini 3.8 Flash TTS (via OpenRouter), the score is Google Lyria 3, and the animation was made with Remotion.
+[`public/video/missing-blue-intro.mp4`](public/video/missing-blue-intro.mp4) (1:37, 1080p, English). The full-quality master is attached to the [v1.0 release](https://github.com/aboodhaymouni/missing-blue/releases/tag/v1.0).
+
+It covers the problem, Detect · Verify · Remember, and the numbers behind them. It uses real Sentinel-2 imagery from this repository; the route is illustrative and the crew report is synthetic, as everywhere else. The narration is Gemini 3.8 Flash TTS (via OpenRouter), the score is Google Lyria 3, and the animation is code: the Remotion project is in [`video/`](video/).
+
+```bash
+npm run video:install
+npm run video:render     # writes video/out/missing-blue.mp4
+```
 
 ## What it does
 
@@ -44,12 +51,16 @@ A candidate site is only worth a visit. It is never presented as a violation.
 
 ## Run it
 
-Tested with Node.js 24.11 on Windows 11.
+Tested with Node.js 24.11 on Windows 11. Clone it, install it, and it runs: no key, database or extra download is needed.
 
 ```bash
+git clone https://github.com/aboodhaymouni/missing-blue.git
+cd missing-blue
 npm install
 npm run dev
 ```
+
+Then open http://localhost:5180/. Or skip the install and use the published copy at https://aboodhaymouni.github.io/missing-blue/.
 
 | Page | URL |
 |---|---|
@@ -170,6 +181,8 @@ src/lib/export.ts   wMain GeoJSON in EPSG:28191
 src/data/           facts and sources, sample and evaluation reports, generated data
 server/             Claude extraction endpoint (Vite plugin) and its tests
 scripts/            data preparation (Python)
+video/              the intro video as code (Remotion), with its audio and render tools
+docs/media/         README screenshots and the video poster
 ```
 
 Built with Vite, React, TypeScript, Tailwind CSS, MapLibre GL (EOX Sentinel-2 cloudless imagery with OpenFreeMap labels), proj4 and the Anthropic TypeScript SDK.
