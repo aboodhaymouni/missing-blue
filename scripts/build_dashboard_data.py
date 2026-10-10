@@ -267,11 +267,12 @@ def main():
     cand = sum(int(r['patches']) for r in sbs if r['aoi_id'] in disi_aois and r['setting'] == 'S2_default' and r['buffer'] == '0-2km')
     sites = sum(int(r['sites_300m']) for r in sbs if r['aoi_id'] in disi_aois and r['setting'] == 'S2_default' and r['buffer'] == '0-2km')
     rv = {r['measure']: num(r['share']) for r in rows(f'{W}/derived/feasibility/review_summary.csv') if r.get('sample') == 'A_top40' and r.get('share')}
+    ev = {r['measure']: num(r['share']) for r in rows(f'{W}/derived/feasibility/review_summary.csv') if str(r.get('sample', '')).startswith('ESTIMATE_all') and r.get('share')}
     feas = {
         'aois': 5, 'scenes': 100, 'noise_ndvi': '0.0044-0.0068', 'noise_ndmi': '0.0067-0.0093', 'separation': '11-96x (median 13.5x)',
         'detect_green_m2': 400, 'detect_wet_m2': 800, 'candidates_default_2km': cand, 'sites_default_2km': sites,
         'review_top40': {'false_positive': round((rv.get('obvious_false_positive') or 0.5) * 100), 'new_farm': round((rv.get('cause:new_farm_or_greenhouse') or 0.35) * 100), 'unexplained': round((rv.get('cause:unexplained') or 0.15) * 100)},
-        'review_all_estimate': {'false_positive': 76, 'new_farm': 22, 'unexplained': 2},
+        'review_all_estimate': {'false_positive': round((ev.get('obvious_false_positive') or 0.663) * 100), 'new_farm': round((ev.get('cause:new_farm_or_greenhouse') or 0.269) * 100), 'unexplained': round((ev.get('cause:unexplained') or 0.069) * 100)},
         'rain_note_en': '2025 was the driest year on record and 2026 a wet one: 207 of the 321 patches appear only in 2026.',
         'rain_note_ar': 'كان 2025 أجفّ عام مسجّل و2026 عامًا رطبًا: 207 من الرقع الـ321 تظهر في 2026 فقط.',
     }
