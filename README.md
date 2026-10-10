@@ -2,10 +2,28 @@
 
 **Find where water goes missing along Jordan's desert carrier lines, verify it in the field in Arabic, and keep what crews find as map records the utility can trust.**
 
-AI Quest 2026 · Sector 02 `next.society()` — prototype built for the hackathon on 9–10 October 2026.
+AI Quest 2026 · Al Hussein Technical University (HTU) · Sector 02 `next.society()`. Prototype built for the hackathon on 9–10 October 2026.
+
+**[▶ Live demo](https://aboodhaymouni.github.io/missing-blue/)** · **[Operations dashboard](https://aboodhaymouni.github.io/missing-blue/#/app)** · **[Satellite map](https://aboodhaymouni.github.io/missing-blue/#/app/map)** · **[Business model](https://aboodhaymouni.github.io/missing-blue/#/bmc)** · **[Intro video (1:37)](https://aboodhaymouni.github.io/missing-blue/video/missing-blue-intro.mp4)**
+
+[![Watch the 97-second intro](docs/media/video-poster.jpg)](https://aboodhaymouni.github.io/missing-blue/video/missing-blue-intro.mp4)
 
 > نكشف أين تضيع المياه، ولا ندع ما نكتشفه يضيع.
 > صور الأقمار الصناعية ترشّح مواقع تستحق الفحص قرب الخطوط الناقلة، والفرق الميدانية ترسل بلاغها بالعربية (صوتًا أو نصًا)، فيحوّله الذكاء الاصطناعي إلى حقول مع الكلمات التي استند إليها، ثم يصبح مسودة تعديل على الخريطة بصيغة مياهنا لا تُعتمد إلا بيد مهندس.
+
+## Screenshots
+
+| Operations dashboard | Satellite map and ranked sites |
+|---|---|
+| [![Operations dashboard](docs/media/dashboard.jpg)](https://aboodhaymouni.github.io/missing-blue/#/app) | [![Satellite map](docs/media/map.jpg)](https://aboodhaymouni.github.io/missing-blue/#/app/map) |
+| **Data library** | **Landing page** |
+| [![Data library](docs/media/data-library.jpg)](https://aboodhaymouni.github.io/missing-blue/#/app/data) | [![Landing page](docs/media/landing.jpg)](https://aboodhaymouni.github.io/missing-blue/) |
+
+[![Business model canvas](docs/media/business-model.jpg)](https://aboodhaymouni.github.io/missing-blue/#/bmc/poster)
+
+## Intro video
+
+[`public/video/missing-blue-intro.mp4`](public/video/missing-blue-intro.mp4) (1:37, 1080p, English). It covers the problem, Detect · Verify · Remember, and the numbers behind them. It uses real Sentinel-2 imagery from this repository; the route is illustrative and the crew report is synthetic, as everywhere else. The narration is Gemini 3.8 Flash TTS (via OpenRouter), the score is Google Lyria 3, and the animation was made with Remotion.
 
 ## What it does
 
@@ -36,11 +54,17 @@ npm run dev
 | Page | URL |
 |---|---|
 | Landing page | http://localhost:5180/ |
-| Water-loss console | http://localhost:5180/#/app |
-| Console in presentation mode (7 guided steps) | http://localhost:5180/#/app?demo=1 |
-| Crew app (open it in a second window) | http://localhost:5180/#/crew |
+| Operations dashboard (overview) | http://localhost:5180/#/app |
+| Satellite map, ranked sites, reports and edits | http://localhost:5180/#/app/map |
+| Map in presentation mode (7 guided steps) | http://localhost:5180/#/app/map?demo=1 |
+| Data library (sources, facts, news events) | http://localhost:5180/#/app/data |
 | Extraction evaluation | http://localhost:5180/#/app/eval |
+| Audit trail | http://localhost:5180/#/app/audit |
+| Crew app (open it in a second window) | http://localhost:5180/#/crew |
 | Business model canvas, value calculator (prints to one A4 landscape page) | http://localhost:5180/#/bmc |
+| Business model as a one-page poster (16:9) | http://localhost:5180/#/bmc/poster |
+
+The same pages are published as a static site at https://aboodhaymouni.github.io/missing-blue/ (rules engine only; see Build).
 
 The console and the crew app share state through the browser (`localStorage` + `BroadcastChannel`), so run both in the same browser on the same machine. A phone on the same network can open the crew app (`npm run dev` listens on the LAN), but it keeps its own state.
 
@@ -117,6 +141,7 @@ The calculator's arithmetic lives in `src/lib/biz.ts` and is covered by `npm tes
 | CHIRPS v3 rainfall, 2015–2025 | UCSB Climate Hazards Center | Choosing the dry-season window (months with near-zero rain), so new green means water, not rain |
 | `wMain` fields and code lists | GIZ National Water Master Plan public ArcGIS service (schema only, no geometry) | Export format |
 | Facts on the landing page | Ministry, Miyahuna, Petra, JO24 and others; each has a numbered footnote and link | Problem and reach sections |
+| Sentinel-2 cloudless 2021 by EOX IT Services ([s2maps.eu](https://s2maps.eu), CC BY-NC-SA 4.0, contains modified Copernicus Sentinel data 2021) | EOX WMTS tiles | Satellite basemap on the map page (attribution shown on the map) |
 
 Restricted geodata (real pipeline routes, wells, reservoirs, pumping stations) is not in this repository and is not shown. The route on the map is illustrative. Reports contain no names, phone numbers or plates.
 
@@ -147,4 +172,4 @@ server/             Claude extraction endpoint (Vite plugin) and its tests
 scripts/            data preparation (Python)
 ```
 
-Built with Vite, React, TypeScript, Tailwind CSS, MapLibre GL (OpenFreeMap basemap), proj4 and the Anthropic TypeScript SDK.
+Built with Vite, React, TypeScript, Tailwind CSS, MapLibre GL (EOX Sentinel-2 cloudless imagery with OpenFreeMap labels), proj4 and the Anthropic TypeScript SDK.
