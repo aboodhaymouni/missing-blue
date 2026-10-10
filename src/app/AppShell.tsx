@@ -15,7 +15,7 @@ function NavItem({ item, onNavigate }: { item: Item; onNavigate?: () => void }) 
   const Icon = item.icon
   const active = item.match ? item.match(pathname, search) : pathname === item.to
   const cls = clsx(
-    'group relative flex h-10 items-center gap-3 rounded-[10px] px-3 text-[14px] transition-all duration-200',
+    'group relative flex h-9 shrink-0 items-center gap-3 rounded-[10px] px-3 text-[13.5px] transition-all duration-200',
     active ? 'mb-nav-active font-semibold text-white' : 'text-rail-ink hover:bg-white/[0.06] hover:text-white',
   )
   const body = (
@@ -73,37 +73,32 @@ function RailContent({ onNavigate }: { onNavigate?: () => void }) {
 
   return (
     <div className="flex h-full flex-col">
-      <div className="px-5 pb-5 pt-6">
+      <div className="shrink-0 px-4 pb-3 pt-4">
         <Link to="/" aria-label={ar ? 'الصفحة الرئيسية' : 'Home'} onClick={onNavigate}><Wordmark size="sm" tone="white" /></Link>
-        <div className="mt-6 flex items-center gap-2.5 rounded-[12px] border border-white/[0.08] bg-gradient-to-br from-white/[0.08] to-white/[0.02] px-3 py-2.5">
-          <span className="grid size-9 place-items-center rounded-[10px] bg-gradient-to-br from-signal-400 to-signal-700 text-white shadow-[0_6px_18px_-6px_rgb(42_139_255/0.8)]"><BarChart3 className="size-4" aria-hidden /></span>
+        <div className="mt-3.5 flex items-center gap-2.5 rounded-[12px] border border-white/[0.08] bg-gradient-to-br from-white/[0.08] to-white/[0.02] px-2.5 py-2">
+          <span className="grid size-8 shrink-0 place-items-center rounded-[9px] bg-gradient-to-br from-signal-400 to-signal-700 text-white shadow-[0_6px_18px_-6px_rgb(42_139_255/0.8)]"><BarChart3 className="size-4" aria-hidden /></span>
           <span className="min-w-0">
             <span className="block truncate text-[13px] font-semibold text-white">{ar ? 'مكتب فاقد المياه' : 'Water-loss desk'}</span>
             <span className="block truncate text-[11.5px] text-rail-ink">{ar ? 'نموذج عرض · صور حقيقية' : 'Demo workspace · real imagery'}</span>
           </span>
         </div>
       </div>
-      <nav className="min-h-0 flex-1 overflow-y-auto px-3 pb-4" aria-label={ar ? 'أقسام لوحة العمليات' : 'Dashboard sections'}>
+      <nav className="mb-rail-scroll min-h-0 flex-1 overflow-y-auto overscroll-contain px-3 pb-2 pt-1" aria-label={ar ? 'أقسام لوحة العمليات' : 'Dashboard sections'}>
         {groups.map((g) => (
-          <div key={g.title.en} className="mb-5">
-            <p className="mb-1.5 px-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-rail-ink/45">{t(g.title)}</p>
+          <div key={g.title.en} className="mb-3 last:mb-0">
+            <p className="mb-1 px-3 text-[10.5px] font-semibold uppercase tracking-[0.14em] text-rail-ink/45">{t(g.title)}</p>
             <div className="grid gap-0.5">{g.items.map((it) => <NavItem key={it.to} item={it} onNavigate={onNavigate} />)}</div>
           </div>
         ))}
       </nav>
-      <div className="border-t border-white/[0.08] px-5 py-4">
-        <div className="rounded-[12px] border border-white/[0.08] bg-white/[0.04] p-3">
-          <div className="flex items-center gap-2 text-[12px] text-rail-ink">
-            <ClipboardCheck className="size-4 shrink-0 text-signal-300" aria-hidden />
-            <span>{ar ? 'البيانات محقَّقة حتى 10 تشرين الأول 2026' : 'Data checked to 10 Oct 2026'}</span>
-          </div>
-          <div className="mt-2.5 flex items-center justify-between gap-2">
-            <span className="font-mono text-[10.5px] tracking-[0.08em] text-rail-ink/50" dir="ltr">AI QUEST 2026 · S02</span>
-            <button type="button" onClick={toggle} className="h-7 rounded-full border border-white/15 px-3 text-[12px] font-semibold text-white hover:bg-white/10">
-              <span lang={ar ? 'en' : 'ar'}>{ar ? 'English' : 'العربية'}</span>
-            </button>
-          </div>
-        </div>
+      <div className="flex shrink-0 items-center justify-between gap-2 border-t border-white/[0.08] px-4 py-2.5">
+        <span className="flex min-w-0 items-center gap-1.5 text-[11px] text-rail-ink/70">
+          <ClipboardCheck className="size-3.5 shrink-0 text-signal-300" aria-hidden />
+          <span className="truncate">{ar ? 'محقَّقة حتى 10/10/2026' : 'Checked to 10 Oct 2026'}</span>
+        </span>
+        <button type="button" onClick={toggle} className="h-7 shrink-0 rounded-full border border-white/15 px-3 text-[12px] font-semibold text-white hover:bg-white/10">
+          <span lang={ar ? 'en' : 'ar'}>{ar ? 'English' : 'العربية'}</span>
+        </button>
       </div>
     </div>
   )
@@ -168,14 +163,14 @@ export default function AppShell() {
 
   return (
     <div className="mb-canvas flex min-h-dvh text-ink">
-      <aside className="mb-rail sticky top-0 hidden h-dvh w-[268px] shrink-0 lg:block">
+      <aside className="mb-rail sticky top-0 hidden h-dvh w-[244px] shrink-0 overflow-hidden lg:block">
         <RailContent />
       </aside>
 
       {open && (
         <div className="fixed inset-0 z-50 lg:hidden" role="dialog" aria-modal="true" aria-label={ar ? 'القائمة' : 'Menu'}>
           <button type="button" className="absolute inset-0 bg-navy-950/50" aria-label={ar ? 'إغلاق القائمة' : 'Close menu'} onClick={() => setOpen(false)} />
-          <div className="mb-rail absolute inset-y-0 start-0 w-[284px] max-w-[85vw] shadow-2xl">
+          <div className="mb-rail absolute inset-y-0 start-0 w-[272px] max-w-[85vw] overflow-hidden shadow-2xl">
             <button type="button" onClick={() => setOpen(false)} className="absolute end-3 top-4 grid size-9 place-items-center rounded-[8px] text-white hover:bg-white/10" aria-label={ar ? 'إغلاق' : 'Close'}><X className="size-5" /></button>
             <RailContent onNavigate={() => setOpen(false)} />
           </div>

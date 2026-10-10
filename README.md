@@ -145,6 +145,8 @@ The calculator's arithmetic lives in `src/lib/biz.ts` and is covered by `npm tes
 
 ## Data and provenance
 
+**Full map of every data file, what makes it, what reads it, and how to move the raw data to its own repository: [DATA.md](DATA.md).** The [`data/`](data/) folder is reserved for that data repository.
+
 | Data | Source | Use |
 |---|---|---|
 | Sentinel-2 L2A, dry season (Aug) 2017–2026 | Copernicus via Earth Search (AWS), harmonised `(DN − 1000) / 10000` | Images, NDVI change, per-site NDVI by year |

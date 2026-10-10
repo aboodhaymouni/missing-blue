@@ -3,7 +3,8 @@ Reads C:/xampp/htdocs/FORCAST/water (outputs of the verified collection) and wri
 Run: python -I scripts/build_stats.py
 """
 import csv, glob, json, os
-W = 'C:/xampp/htdocs/FORCAST/water'
+# Inputs live outside this repo; see DATA.md. Override with MB_WATER_DATA / MB_DATA_DRIVE / MB_IMAGERY.
+W = os.environ.get('MB_WATER_DATA', 'C:/xampp/htdocs/FORCAST/water')
 OUT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'src', 'data', 'generated', 'stats.json')
 
 

@@ -31,3 +31,7 @@ video/public/audio/*_raw.txt
 
 # not part of the published app
 /exports/
+
+# data repository lands here (see DATA.md); only its README is tracked
+/data/*
+!/data/README.md

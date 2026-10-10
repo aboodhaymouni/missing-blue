@@ -21,12 +21,13 @@ from shapely.geometry import Point, mapping
 from shapely.ops import transform as shp_transform
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SRC = 'D:/forcast/water/imagery'
+# Inputs live outside this repo; see DATA.md. Override with MB_WATER_DATA / MB_DATA_DRIVE / MB_IMAGERY.
+SRC = os.environ.get('MB_IMAGERY', 'D:/forcast/water/imagery')
 GEN = os.path.join(ROOT, 'src', 'data', 'generated')
 CROPS = os.path.join(ROOT, 'public', 'imagery', 'sites')
 os.makedirs(GEN, exist_ok=True)
 os.makedirs(CROPS, exist_ok=True)
-ROUTES = 'C:/xampp/htdocs/FORCAST/water/derived/corridors/demo_illustrative.gpkg'
+ROUTES = os.path.join(os.environ.get('MB_WATER_DATA', 'C:/xampp/htdocs/FORCAST/water'), 'derived', 'corridors', 'demo_illustrative.gpkg')
 WC = {10: 'tree', 20: 'shrub', 30: 'grass', 40: 'cropland', 50: 'built', 60: 'bare', 70: 'snow', 80: 'water', 90: 'wetland', 95: 'mangrove', 100: 'moss'}
 
 

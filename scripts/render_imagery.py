@@ -10,7 +10,8 @@ import rasterio
 from rasterio.warp import transform as warp_transform
 from PIL import Image, ImageFilter
 
-SRC = 'D:/forcast/water/imagery'
+# Inputs live outside this repo; see DATA.md. Override with MB_WATER_DATA / MB_DATA_DRIVE / MB_IMAGERY.
+SRC = os.environ.get('MB_IMAGERY', 'D:/forcast/water/imagery')
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, 'public', 'imagery')
 META = os.path.join(ROOT, 'src', 'data', 'imagery')
