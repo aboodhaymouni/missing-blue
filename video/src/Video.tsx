@@ -58,7 +58,7 @@ const FX: Fx[] = [
   ...['desert', 'loss', 'attacks', 'records', 'verify', 'remember', 'proof', 'close'].map((id) => ({ at: S[id] - 6, src: 'whoosh', vol: 0.16 })),
   { at: S.detect - 16, src: 'whoosh', vol: 0.3 },
   { at: S.reveal + 27 - 48, src: 'riser', vol: 0.3 },
-  { at: S.reveal + 26, src: 'impact', vol: 0.6 },
+  { at: S.reveal + 26, src: 'impact', vol: 0.35 },
   { at: S.attacks + 290, src: 'hit', vol: 0.26 },
   { at: S.records + 150, src: 'hit', vol: 0.22 },
   { at: S.proof + 48, src: 'hit', vol: 0.22 },
