@@ -1,0 +1,60 @@
+{
+ "name": "mudawwara",
+ "label": "Mudawwara desert farms (positive control)",
+ "aoi": "aoi-05",
+ "crs": "EPSG:32637",
+ "window_rows_cols": [
+  [
+   451,
+   1351
+  ],
+  [
+   151,
+   1351
+  ]
+ ],
+ "corners_lonlat_tl_tr_br_bl": [
+  [
+   35.912097,
+   29.359776
+  ],
+  [
+   36.03556,
+   29.362579
+  ],
+  [
+   36.037907,
+   29.281458
+  ],
+  [
+   35.914541,
+   29.278664
+  ]
+ ],
+ "size_km": [
+  12.0,
+  9.0
+ ],
+ "source": "Copernicus Sentinel-2 L2A via Earth Search (AWS), harmonised DN-1000; true colour B04/B03/B02, joint stretch",
+ "attribution": "Contains modified Copernicus Sentinel data 2017–2024",
+ "before": {
+  "date": "2017-08-11",
+  "file": "imagery/mudawwara-2017.webp",
+  "px": [
+   1200,
+   900
+  ]
+ },
+ "after": {
+  "date": "2024-08-09",
+  "file": "imagery/mudawwara-2024.webp",
+  "px": [
+   1200,
+   900
+  ]
+ },
+ "change": {
+  "file": "imagery/mudawwara-change.png",
+  "pixels_ndvi_gain_gt_0_18": 50923
+ }
+}

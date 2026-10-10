@@ -1,0 +1,17 @@
+{
+ "generated_from": "C:/xampp/htdocs/FORCAST/water",
+ "sources": 897,
+ "sources_downloaded": 623,
+ "facts": 515,
+ "facts_confirmed": 384,
+ "facts_corrected_or_partial": 113,
+ "theft_events": 597,
+ "theft_geocoded": 457,
+ "supply_events": 502,
+ "corridors": 8,
+ "nrw_values": 540,
+ "kartaview_photos_corridors": 37105,
+ "opendata_water_datasets": 165,
+ "wapor_new_et_patches": 237,
+ "dem_tiles": 18
+}

@@ -1,0 +1,60 @@
+{
+ "name": "qatrana",
+ "label": "Desert segment near Qatrana (Disi corridor area)",
+ "aoi": "aoi-01",
+ "crs": "EPSG:32637",
+ "window_rows_cols": [
+  [
+   0,
+   2270
+  ],
+  [
+   0,
+   1870
+  ]
+ ],
+ "corners_lonlat_tl_tr_br_bl": [
+  [
+   35.943439,
+   31.470017
+  ],
+  [
+   36.140033,
+   31.474563
+  ],
+  [
+   36.146227,
+   31.270003
+  ],
+  [
+   35.950057,
+   31.265493
+  ]
+ ],
+ "size_km": [
+  18.7,
+  22.7
+ ],
+ "source": "Copernicus Sentinel-2 L2A via Earth Search (AWS), harmonised DN-1000; true colour B04/B03/B02, joint stretch",
+ "attribution": "Contains modified Copernicus Sentinel data 2017–2025",
+ "before": {
+  "date": "2017-08-11",
+  "file": "imagery/qatrana-2017.webp",
+  "px": [
+   1122,
+   1362
+  ]
+ },
+ "after": {
+  "date": "2025-08-06",
+  "file": "imagery/qatrana-2025.webp",
+  "px": [
+   1122,
+   1362
+  ]
+ },
+ "change": {
+  "file": "imagery/qatrana-change.png",
+  "pixels_ndvi_gain_gt_0_18": 4094
+ }
+}

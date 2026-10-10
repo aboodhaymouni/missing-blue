@@ -1,0 +1,88 @@
+/*
+  Map page over satellite imagery: dark-glass map controls and glowing site markers.
+  Kept out of styles/index.css on purpose; everything here is scoped to .mb-map (the MapView root)
+  or to the .mb-site marker class.
+*/
+
+/* MapLibre's own controls, re-inked as dark glass. (Radius and shadow of .maplibregl-ctrl-group are
+   pinned with !important inside @layer components in index.css, so only colours change here.) */
+.mb-map .maplibregl-ctrl-group {
+  background: rgb(4 16 42 / 0.75);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgb(255 255 255 / 0.15);
+}
+.mb-map .maplibregl-ctrl-group button + button { border-top-color: rgb(255 255 255 / 0.12); }
+.mb-map .maplibregl-ctrl-group button:not(:disabled):hover { background-color: rgb(255 255 255 / 0.1); }
+.mb-map .maplibregl-ctrl-group .maplibregl-ctrl-icon { filter: invert(1) brightness(1.15); }
+
+.mb-map .maplibregl-ctrl-scale {
+  background: rgb(4 16 42 / 0.7);
+  border-color: rgb(255 255 255 / 0.75);
+  color: #fff;
+}
+.mb-map .maplibregl-ctrl-attrib,
+.mb-map .maplibregl-ctrl-attrib.maplibregl-compact {
+  background: rgb(4 16 42 / 0.78);
+  color: rgb(255 255 255 / 0.85);
+}
+.mb-map .maplibregl-ctrl-attrib a { color: #cfe6ff; }
+.mb-map .maplibregl-ctrl-attrib-button { filter: invert(1); background-color: transparent; }
+
+/* Keep the bottom controls (scale, attribution) clear of the floating footer strip.
+   --mb-foot is measured from the footer in Console.tsx. */
+.mb-map .maplibregl-ctrl-bottom-left,
+.mb-map .maplibregl-ctrl-bottom-right { bottom: var(--mb-foot, 52px); }
+
+/* Site markers: glowing circles with the rank number. MapLibre positions markers with
+   `transform`, so nothing here animates or transitions transform on the marker itself. */
+.mb-site {
+  --bg: #f5a524;
+  --fg: #011c47;
+  --bd: #fff4dc;
+  --glow: rgb(245 165 36 / 0.8);
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  border-radius: 9999px;
+  border: 2px solid var(--bd);
+  background: var(--bg);
+  color: var(--fg);
+  font: 600 11px/1 'IBM Plex Mono', ui-monospace, monospace;
+  cursor: pointer;
+  box-shadow: 0 0 0 1px rgb(2 8 23 / 0.35), 0 0 12px 3px var(--glow), 0 2px 6px rgb(0 0 0 / 0.45);
+  transition: width 0.2s, height 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+.mb-site:hover { box-shadow: 0 0 0 1px rgb(2 8 23 / 0.35), 0 0 18px 6px var(--glow), 0 2px 6px rgb(0 0 0 / 0.45); }
+.mb-site:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+
+.mb-site[data-status='dispatched'] { --bg: #011c47; --fg: #fff; --bd: #f5a524; --glow: rgb(245 165 36 / 0.6); }
+.mb-site[data-status='visited'] { --bg: #1a6ff0; --fg: #fff; --bd: #fff; --glow: rgb(42 139 255 / 0.85); }
+.mb-site[data-status='licensed'] { --bg: #fff; --fg: #3b4a8a; --bd: #8e9bd6; --glow: rgb(255 255 255 / 0.45); border-style: dashed; }
+.mb-site[data-status='dismissed'] { --bg: #e4ded2; --fg: #6d7183; --bd: #fff; --glow: rgb(255 255 255 / 0.2); border-style: dashed; }
+
+.mb-site.is-sel {
+  z-index: 3;
+  width: 34px;
+  height: 34px;
+  font-size: 12px;
+  border-color: #fff;
+  box-shadow: 0 0 0 3px #fff, 0 0 0 5px rgb(42 139 255 / 0.9), 0 0 26px 8px var(--glow);
+}
+.mb-site.is-sel::after {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  border-radius: 9999px;
+  border: 2px solid #fff;
+  pointer-events: none;
+  animation: mb-pulse 1.8s ease-out infinite;
+}
+@keyframes mb-pulse {
+  from { transform: scale(1); opacity: 0.9; }
+  to { transform: scale(2.2); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mb-site.is-sel::after { animation: none; opacity: 0.6; }
+}

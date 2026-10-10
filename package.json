@@ -1,0 +1,41 @@
+{
+  "name": "missing-blue",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Missing Blue — الأزرق المفقود: find where water goes missing, verify it in the field, and keep what crews find as verified map records.",
+  "scripts": {
+    "dev": "vite --host --port 5180 --strictPort",
+    "build": "tsc -p tsconfig.json && tsc -p tsconfig.node.json && vite build",
+    "preview": "vite preview --host --port 5181 --strictPort",
+    "typecheck": "tsc -p tsconfig.json && tsc -p tsconfig.node.json",
+    "test": "node --test server/extract-core.test.ts server/biz.test.ts"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.133.0",
+    "@fontsource-variable/alexandria": "^5.3.0",
+    "@fontsource-variable/markazi-text": "^5.3.0",
+    "@fontsource-variable/newsreader": "^5.3.0",
+    "@fontsource/ibm-plex-mono": "^5.3.0",
+    "@fontsource/ibm-plex-sans-arabic": "^5.3.0",
+    "@types/proj4": "^2.19.0",
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.54.0",
+    "maplibre-gl": "^6.13.0",
+    "motion": "^14.1.0",
+    "proj4": "^2.22.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "react-router": "^8.4.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.4"
+  }
+}

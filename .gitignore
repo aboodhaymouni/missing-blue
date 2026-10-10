@@ -1,0 +1,34 @@
+# dependencies and builds
+node_modules/
+dist/
+dist-ssr/
+.vite/
+
+# logs
+*.log
+npm-debug.log*
+
+# secrets: keys live in .env.local on this machine only
+.env
+.env.*
+*.local
+!.env.example
+
+# editors and OS
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.sw?
+.DS_Store
+Thumbs.db
+
+# video project build output
+video/node_modules/
+video/out/
+video/tts_test/
+video/*.log
+video/public/audio/*_raw.txt
+
+# not part of the published app
+video/
+exports/
