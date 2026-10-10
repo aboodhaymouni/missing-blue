@@ -29,6 +29,7 @@ const MUSIC_AT = S.reveal + 27 - 32 * 30
 const DUCK: [number, number][] = (() => {
   const w: [number, number][] = []
   for (const v of T.vo) {
+    if (v.id === '06') continue // the logo reveal: let the score's hit play at full strength
     const a = v.start - 10, b = v.start + v.dur + 6
     const last = w[w.length - 1]
     if (last && a - last[1] < 40) last[1] = b
@@ -37,23 +38,27 @@ const DUCK: [number, number][] = (() => {
   return w
 })()
 
-const BASE = 0.3 // music level with no voice
-const UNDER = 0.11 // music level under the voice
+const BASE = 0.36 // music level with no voice
+const UNDER = 0.13 // music level under the voice
+/** The reveal: from the riser through "This is Missing Blue" the score comes up to full. */
+const REVEAL = 0.62
 function musicLevel(abs: number) {
   let duck = 0
   for (const [a, b] of DUCK) {
     duck = Math.max(duck, interpolate(abs, [a - 18, a, b, b + 24], [0, 1, 1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }))
   }
   const fadeOut = interpolate(abs, [T.total - 75, T.total], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' })
-  return (BASE - (BASE - UNDER) * duck) * fadeOut
+  const reveal = interpolate(abs, [S.reveal - 20, S.reveal + 20, S.reveal + 140, S.reveal + 175], [0, 1, 1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' })
+  const level = BASE - (BASE - UNDER) * duck
+  return (level + (REVEAL - level) * reveal) * fadeOut
 }
 
 type Fx = { at: number; src: string; vol: number }
 const FX: Fx[] = [
   ...['desert', 'loss', 'attacks', 'records', 'verify', 'remember', 'proof', 'close'].map((id) => ({ at: S[id] - 6, src: 'whoosh', vol: 0.16 })),
   { at: S.detect - 16, src: 'whoosh', vol: 0.3 },
-  { at: S.reveal + 27 - 48, src: 'riser', vol: 0.18 },
-  { at: S.reveal + 26, src: 'impact', vol: 0.3 },
+  { at: S.reveal + 27 - 48, src: 'riser', vol: 0.3 },
+  { at: S.reveal + 26, src: 'impact', vol: 0.6 },
   { at: S.attacks + 290, src: 'hit', vol: 0.26 },
   { at: S.records + 150, src: 'hit', vol: 0.22 },
   { at: S.proof + 48, src: 'hit', vol: 0.22 },
